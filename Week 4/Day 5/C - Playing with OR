@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        ll n, k;
+        cin >> n >> k;
+        vector<ll> v(n);
+        ll prefix[n + 1];
+        prefix[0] = 0;
+        ll odd = 0;
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> v[i];
+            if (v[i] % 2 != 0)
+                odd++;
+            prefix[i + 1] = odd;
+        }
+        ll l = 1, r = k;
+        ll ans = 0;
+        while (r <= n)
+        {
+            if (prefix[r] - prefix[l - 1] > 0)
+                ans++;
+            l++;
+            r++;
+        }
+        cout << ans << '\n';
+    }
+    return 0;
+}
