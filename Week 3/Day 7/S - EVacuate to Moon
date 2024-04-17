@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n, m, h;
+        cin >> n >> m >> h;
+        int cars[n];
+        int outs[m];
+        for (int i = 0; i < n; i++)
+            cin >> cars[i];
+        for (int i = 0; i < m; i++)
+            cin >> outs[i];
+        sort(cars, cars + n, greater<int>());
+        sort(outs, outs + m, greater<int>());
+        int ind = min(m, n);
+        long long ans = 0;
+        for (int i = 0; i < ind; i++)
+        {
+            int hour = 0;
+            long long sum = 0;
+            while (sum < cars[i] && hour < h)
+            {
+                if (sum + outs[i] > cars[i])
+                    sum += (cars[i] - sum);
+                else
+                    sum += outs[i];
+                hour++;
+            }
+            ans += sum;
+        }
+        cout << ans << '\n';
+    }
+    return 0;
+}
