@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        cin >> n;
+        vector<int> v(n);
+        int small[n];
+        unordered_map<int, int> mp;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> v[i];
+            mp.insert({v[i], i + 1});
+            if (i == 0)
+                small[i] = v[i];
+            else if (v[i] < small[i - 1])
+                small[i] = v[i];
+            else
+                small[i] = small[i - 1];
+        }
+        bool flag = false;
+        int a, b, c;
+        for (int i = 1; i < n - 1; i++)
+        {
+            if (v[i] > small[i])
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (v[j] < v[i])
+                    {
+                        flag = true;
+                        a = mp[small[i]];
+                        b = i + 1;
+                        c = j + 1;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (flag)
+        {
+            cout << "YES" << '\n';
+            cout << a << " " << b << " " << c << '\n';
+        }
+        else
+            cout << "NO" << '\n';
+    }
+    return 0;
+}
