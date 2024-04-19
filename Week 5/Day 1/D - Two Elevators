@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int a, b, c;
+        cin >> a >> b >> c;
+        int pos = 1;
+        long long first = abs(pos - a);
+        long long second = abs(b - c) + abs(pos - c);
+        if (first == second)
+            cout << 3 << '\n';
+        else if (first < second)
+            cout << 1 << '\n';
+        else
+            cout << 2 << '\n';
+    }
+    return 0;
+}
