@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        long long a, b, n;
+        cin >> a >> b >> n;
+        long long ans = b - 1;
+        long long temp = 1;
+        for (long long i = 0; i < n; i++)
+        {
+            long long x;
+            cin >> x;
+            if (i == n - 1)
+                ans += min(temp + x, a);
+            else
+            {
+                temp += x;
+                long long val = min(temp, a);
+                ans += val - 1;
+                temp = 1;
+            }
+        }
+        cout << ans << '\n';
+    }
+    return 0;
+}
