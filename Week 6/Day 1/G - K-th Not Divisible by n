@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n, k;
+        cin >> n >> k;
+        ll a = k / (n - 1);
+        ll b = n * a;
+        if (k % (n - 1) == 0)
+            cout << b - 1 << '\n';
+        else
+            cout << b + (k % (n - 1)) << '\n';
+    }
+    return 0;
+}
