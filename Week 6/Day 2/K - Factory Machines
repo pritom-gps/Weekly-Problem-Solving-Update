@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n, t;
+    cin >> n >> t;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    auto valid = [&](ll sec)
+    {
+        ll product = 0;
+        for (int i = 0; i < n; i++)
+        {
+            product += (sec / v[i]);
+            if (product >= t)
+                return true;
+        }
+        return false;
+    };
+    ll l = 0, r = 1e18, ans;
+    while (l <= r)
+    {
+        ll mid = (l + r) / 2;
+        if (valid(mid))
+        {
+            ans = mid;
+            r = mid - 1;
+        }
+        else
+            l = mid + 1;
+    }
+    cout << ans << '\n';
+    return 0;
+}
