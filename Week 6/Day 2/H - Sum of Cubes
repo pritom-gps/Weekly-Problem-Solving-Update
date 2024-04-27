@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    vector<ll> v;
+    for (ll i = 1; i <= 1e4; i++)
+        v.push_back(pow(i, 3));
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        ll x;
+        cin >> x;
+        bool ans = false;
+        for (ll i = 1; i <= 1e4; i++)
+        {
+            ll need = x - pow(i, 3);
+            if (need < 0 || ans)
+                break;
+            ll l = 0, r = v.size() - 1;
+            while (l <= r)
+            {
+                ll mid = (l + r) / 2;
+                if (v[mid] == need)
+                {
+                    ans = true;
+                    break;
+                }
+                else if (need < v[mid])
+                    r = mid - 1;
+                else
+                    l = mid + 1;
+            }
+        }
+        if (ans)
+            cout << "YES" << '\n';
+        else
+            cout << "NO" << '\n';
+    }
+    return 0;
+}
