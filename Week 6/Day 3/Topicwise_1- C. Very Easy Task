@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n, x, y;
+    cin >> n >> x >> y;
+    auto count = [&](ll sec)
+    {
+        if (sec < min(x, y))
+            return false;
+        ll cnt = 1;
+        sec -= min(x, y);
+        cnt += (sec / x) + (sec / y);
+        return cnt >= n;
+    };
+    ll l = 1, r = max(x, y) * n;
+    ll ans;
+    while (l <= r)
+    {
+        ll mid = (l + r) / 2;
+        if (count(mid))
+        {
+            ans = mid;
+            r = mid - 1;
+        }
+        else
+            l = mid + 1;
+    }
+    cout << ans << '\n';
+
+    return 0;
+}
