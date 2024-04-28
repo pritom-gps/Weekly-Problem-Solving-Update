@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n, a, b;
+    cin >> n >> a >> b;
+    auto valid = [&](int val)
+    {
+        if (min(a, b) < val)
+            return false;
+        int possible = a / val;
+        possible += b / val;
+        return possible >= n;
+    };
+    int l = 1, r = max(a, b), ans;
+    while (l <= r)
+    {
+        int mid = (l + r) / 2;
+        if (valid(mid))
+        {
+            ans = mid;
+            l = mid + 1;
+        }
+        else
+            r = mid - 1;
+    }
+    cout << ans << '\n';
+    return 0;
+}
