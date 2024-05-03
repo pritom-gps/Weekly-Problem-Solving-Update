@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        string s;
+        cin >> n >> s;
+        int cnt = 0;
+        map<char, int> mp;
+        for (int i = 0; i < n; i++)
+        {
+            mp[s[i]]++;
+        }
+        int val = min(mp['1'], mp['0']);
+        if (val % 2 == 0)
+            cout << "Ramos" << '\n';
+        else
+            cout << "Zlatan" << '\n';
+    }
+    return 0;
+}
