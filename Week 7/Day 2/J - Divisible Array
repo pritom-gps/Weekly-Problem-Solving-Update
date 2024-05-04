@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        cin >> n;
+        vector<int> ans;
+        int sum = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            ans.push_back(i);
+            sum += i;
+        }
+        if (sum % n == 0)
+        {
+            for (auto val : ans)
+                cout << val << " ";
+        }
+        else
+        {
+            int a = sum / n;
+            int b = ((a + 1) * n) - sum;
+            ans[b - 1] += b;
+            for (auto val : ans)
+                cout << val << " ";
+        }
+        cout << '\n';
+    }
+    return 0;
+}
