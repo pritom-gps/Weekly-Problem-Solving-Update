@@ -1,0 +1,101 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        string s;
+        cin >> n >> s;
+        char l1, l2;
+        int l1_in, l2_in;
+        int l = 0, r = n - 1;
+        bool main = true;
+        while (l < r)
+        {
+            if (s[l] != s[r])
+            {
+                l1 = s[l];
+                l2 = s[r];
+                l1_in = l;
+                l2_in = r;
+                main = false;
+                break;
+            }
+            l++;
+            r--;
+        }
+        if (main)
+            cout << 0 << '\n';
+        else
+        {
+            int cnt1 = 0;
+            l = l1_in, r = l2_in;
+            bool l1_flag = true;
+            while (l < r)
+            {
+                if (s[l] == s[r])
+                {
+                    l++;
+                    r--;
+                }
+                else if (s[l] != l1 && s[r] != l1)
+                {
+                    l1_flag = false;
+                    break;
+                }
+                else if (s[l] == l1)
+                {
+                    cnt1++;
+                    l++;
+                }
+                else if (s[r] == l1)
+                {
+                    cnt1++;
+                    r--;
+                }
+            }
+            int cnt2 = 0;
+            l = l1_in, r = l2_in;
+            bool l2_flag = true;
+            while (l < r)
+            {
+                if (s[l] == s[r])
+                {
+                    l++;
+                    r--;
+                }
+                else if (s[l] != l2 && s[r] != l2)
+                {
+                    l2_flag = false;
+                    break;
+                }
+                else if (s[l] == l2)
+                {
+                    cnt2++;
+                    l++;
+                }
+                else if (s[r] == l2)
+                {
+                    cnt2++;
+                    r--;
+                }
+            }
+            if (l1_flag && l2_flag)
+                cout << min(cnt1, cnt2) << '\n';
+            else if (l1_flag)
+                cout << cnt1 << '\n';
+            else if (l2_flag)
+                cout << cnt2 << '\n';
+            else
+                cout << -1 << '\n';
+        }
+    }
+    return 0;
+}
