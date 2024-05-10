@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        string s;
+        cin >> s;
+        vector<int> low;
+        vector<int> up;
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (s[i] >= 65 && s[i] <= 90 && s[i] != 'B')
+                up.push_back(i);
+            else if (s[i] >= 97 && s[i] <= 122 && s[i] != 'b')
+                low.push_back(i);
+            else if (s[i] == 'B' && !up.empty())
+            {
+                s.replace(up.back(), 1, ".");
+                up.pop_back();
+            }
+            else if (s[i] == 'b' && !low.empty())
+            {
+                s.replace(low.back(), 1, ".");
+                low.pop_back();
+            }
+        }
+        for (auto c : s)
+        {
+            if (c != '.' && c != 'B' && c != 'b')
+                cout << c;
+        }
+        cout << '\n';
+    }
+    return 0;
+}
