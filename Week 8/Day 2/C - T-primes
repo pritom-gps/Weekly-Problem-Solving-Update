@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n;
+    cin >> n;
+    vector<ll> v(n);
+    for (ll i = 0; i < n; i++)
+        cin >> v[i];
+    ll d = sqrt(1e12);
+    vector<bool> prime(d + 1, true);
+    for (ll i = 2; i <= d; i++)
+    {
+        if (prime[i])
+        {
+            for (ll j = i + i; j <= d; j += i)
+                prime[j] = false;
+        }
+    }
+    for (ll i = 0; i < n; i++)
+    {
+        ll val = sqrt(v[i]);
+        if (val * val == v[i] && val >= 2 && prime[val])
+            cout << "YES" << '\n';
+        else
+            cout << "NO" << '\n';
+    }
+    return 0;
+}
