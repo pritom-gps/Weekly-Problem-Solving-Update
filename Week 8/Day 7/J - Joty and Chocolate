@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll lcm(ll a, ll b)
+{
+    return (a / __gcd(a, b)) * b;
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n, a, b, p, q;
+    cin >> n >> a >> b >> p >> q;
+
+    ll cnt1 = n / a;
+    ll cnt2 = n / b;
+    ll common = n / lcm(a, b);
+    if (p > q)
+    {
+        cnt2 -= common;
+        cout << (p * cnt1) + (q * cnt2) << '\n';
+    }
+    else
+    {
+        cnt1 -= common;
+        cout << (p * cnt1) + (q * cnt2) << '\n';
+    }
+    return 0;
+}
