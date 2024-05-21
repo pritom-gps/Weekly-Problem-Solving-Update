@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        ll x, y;
+        cin >> x >> y;
+        ll mx = max(x, y);
+        ll mn = min(x, y);
+        ll val = (mx * mx) - (mx - 1);
+        ll a = val + (mx - mn);
+        ll b = val - (mx - mn);
+        if (x == y)
+            cout << val << '\n';
+        else if (x < y)
+        {
+            if (mx % 2 == 0)
+                cout << b << '\n';
+            else
+                cout << a << '\n';
+        }
+        else
+        {
+            if (mx % 2 == 0)
+                cout << a << '\n';
+            else
+                cout << b << '\n';
+        }
+    }
+    return 0;
+}
