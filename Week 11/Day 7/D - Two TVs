@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n;
+    cin >> n;
+    map<ll, ll> mp;
+    while (n--)
+    {
+        ll l, r;
+        cin >> l >> r;
+        mp[l]++;
+        mp[r + 1]--;
+    }
+    int ans = 0;
+    bool flag = true;
+    for (auto [x, y] : mp)
+    {
+        ans += y;
+        if (ans > 2)
+        {
+            flag = false;
+            break;
+        }
+    }
+    if (flag)
+        cout << "YES" << '\n';
+    else
+        cout << "NO" << '\n';
+    return 0;
+}
