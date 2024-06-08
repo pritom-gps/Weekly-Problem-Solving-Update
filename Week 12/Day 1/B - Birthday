@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    sort(v.begin(), v.end());
+    list<int> lt;
+    while (!v.empty())
+    {
+        if (!v.empty())
+        {
+            lt.push_back(v.back());
+            v.pop_back();
+        }
+        if (!v.empty())
+        {
+            lt.push_front(v.back());
+            v.pop_back();
+        }
+    }
+    while (!lt.empty())
+    {
+        cout << lt.front() << " ";
+        lt.pop_front();
+    }
+    return 0;
+}
