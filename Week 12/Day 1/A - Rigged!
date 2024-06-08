@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        cin >> n;
+        vector<pair<int, int>> v;
+        for (int i = 0; i < n; i++)
+        {
+            int x, y;
+            cin >> x >> y;
+            v.push_back({x, y});
+        }
+        pair<int, int> poly = {v[0].first, v[0].second};
+        bool flag = true;
+        for (int i = 1; i < n; i++)
+        {
+            if (v[i].first >= poly.first && v[i].second >= poly.second)
+            {
+                flag = false;
+                break;
+            }
+        }
+        if (flag)
+            cout << poly.first << '\n';
+        else
+            cout << -1 << '\n';
+    }
+    return 0;
+}
