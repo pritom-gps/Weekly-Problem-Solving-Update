@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int l, r;
+        cin >> l >> r;
+        if (r >= 4)
+        {
+            r = r - (r % 4);
+            int cnt = 0;
+            while (r > 1)
+            {
+                r /= 2;
+                cnt++;
+            }
+            cout << cnt << '\n';
+        }
+        else
+            cout << 1 << '\n';
+    }
+    return 0;
+}
