@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    vector<int> a(n);
+    vector<int> x(n);
+    x[0] = 0;
+    a[0] = v[0];
+    int mx = a[0];
+    for (int i = 1; i < n; i++)
+    {
+        x[i] = max(mx,a[i-1]);
+        mx=x[i];
+        a[i] = mx + v[i];
+    }
+    for (auto val : a)
+            cout << val << " ";
+        cout << '\n';
+    return 0;
+}
