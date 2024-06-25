@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        string s;
+        cin >> s;
+        int n = s.size();
+        map<char, int> mp;
+        int last = -1;
+        int ans = INT_MIN;
+        for (int i = 0; i < n; i++)
+        {
+            mp[s[i]]++;
+            if (s[i] == 'R')
+            {
+                ans = max(ans, i - last);
+                last = i;
+            }
+        }
+        if (mp['L'] == 0)
+            cout << 1 << '\n';
+        else if (mp['R'] == 0)
+            cout << n + 1 << '\n';
+        else
+            cout << max(ans, n - last) << '\n';
+    }
+    return 0;
+}
