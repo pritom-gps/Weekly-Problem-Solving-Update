@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        string s;
+        cin >> n >> s;
+        ll ans = INT_MAX;
+        for (int i = 0; i < n - 1; i++)
+        {
+            int a = (s[i] - 48) * 10;
+            int b = (s[i + 1] - 48) * 1;
+            ll sum = a + b;
+            for (int j = 0; j < n; j++)
+            {
+                if (j != i && j != i + 1 && s[j] != '1')
+                {
+                    if (s[j] == '0')
+                    {
+                        ans = 0;
+                        break;
+                    }
+                    if (sum == 1)
+                        sum = s[j] - 48;
+                    else
+                        sum += s[j] - 48;
+                }
+            }
+            ans = min(ans, sum);
+        }
+        cout << ans << '\n';
+    }
+    return 0;
+}
