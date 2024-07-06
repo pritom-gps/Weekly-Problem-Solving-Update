@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        ll x, y, k;
+        cin >> x >> y >> k;
+        x++;
+        k--;
+        bool flag = true;
+        while (x != y)
+        {
+            if (x % y == 0)
+            {
+                while (x % y == 0)
+                    x /= y;
+            }
+            if (k == 0)
+            {
+                cout << x << '\n';
+                flag = false;
+                break;
+            }
+            ll tmp = y - x % y;
+            if (tmp <= k)
+            {
+                x += tmp;
+                k -= tmp;
+            }
+            else
+            {
+                cout << x + k << '\n';
+                flag = false;
+                break;
+            }
+        }
+        if (flag)
+            cout << 1 + k % (y - 1) << '\n';
+    }
+    return 0;
+}
