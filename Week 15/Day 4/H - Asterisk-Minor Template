@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        string a, b;
+        cin >> a >> b;
+        int n = a.length();
+        int m = b.length();
+        if (a[0] == b[0])
+            cout << "YES" << '\n'
+                 << a[0] << "*" << '\n';
+        else if (a[n - 1] == b[m - 1])
+            cout << "YES" << '\n'
+                 << "*" << a[n - 1] << '\n';
+        else
+        {
+            string ans;
+            bool flag = false;
+            for (int i = 0; i < n - 1; i++)
+            {
+                string s;
+                s.push_back(a[i]);
+                s.push_back(a[i + 1]);
+                int val = b.find(s);
+                if (val != -1)
+                {
+                    ans += s;
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag)
+                cout << "YES" << '\n'
+                     << "*" << ans << "*" << '\n';
+            else
+                cout << "NO" << '\n';
+        }
+    }
+    return 0;
+}
