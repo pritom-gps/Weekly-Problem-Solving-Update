@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n, m;
+    cin >> n >> m;
+    ll candy_put = 0;
+    ll candy = 1;
+    while (candy_put < m && n--)
+    {
+        candy_put += candy;
+        candy++;
+    }
+    ll ate = candy_put - m;
+    n -= ate;
+    ll val = 0;
+    while (n > 0)
+    {
+        ate += candy;
+        n -= (candy + 1);
+        candy++;
+    }
+    cout << ate << '\n';
+    return 0;
+}
