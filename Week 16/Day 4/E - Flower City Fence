@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        cin >> n;
+        vector<int> v(n);
+        map<int, int> mp;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> v[i];
+            mp[v[i]]++;
+        }
+        bool flag = true;
+        int k = 0;
+        int sub = 0;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            int val = v[i] - sub;
+            for (int j = 0; j < val; j++)
+            {
+                if (i + 1 != v[k])
+                {
+                    flag = false;
+                    break;
+                }
+                k++;
+            }
+            sub = v[i];
+            i -= (mp[v[i]] - 1);
+        }
+        if (flag)
+            cout << "YES" << '\n';
+        else
+            cout << "NO" << '\n';
+    }
+    return 0;
+}
