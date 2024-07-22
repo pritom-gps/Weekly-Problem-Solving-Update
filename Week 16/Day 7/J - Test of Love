@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n, m, k;
+        cin >> n >> m >> k;
+        string s;
+        cin >> s;
+        bool ans = true;
+        for (int i = 0; i < n; i++)
+        {
+            if (i + m > n)
+                break;
+            bool log = false;
+            bool croc = false;
+            bool water = false;
+            int pos_log = 0;
+            int pos_water = 0;
+            for (int j = 1; j <= m && i < n; j++)
+            {
+                if (s[i] == 'L')
+                {
+                    log = true;
+                    pos_log = i;
+                }
+                else if (s[i] == 'W')
+                {
+                    water = true;
+                    pos_water = i;
+                }
+                else
+                    croc = true;
+                i++;
+            }
+            if (log)
+                i = pos_log;
+            else if (water)
+            {
+                i = pos_water;
+                while (s[i] == 'W' && i < n && k > 0)
+                {
+                    k--;
+                    i++;
+                }
+                if (i == n)
+                    break;
+                else if (s[i] != 'L')
+                {
+                    ans = false;
+                    break;
+                }
+            }
+            else
+            {
+                ans = false;
+                break;
+            }
+        }
+        if (ans)
+            cout << "YES" << '\n';
+        else
+            cout << "NO" << '\n';
+    }
+    return 0;
+}
