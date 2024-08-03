@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    int mex = -1;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
+        if (v[i] > mex + 1)
+        {
+            cout << i + 1 << '\n';
+            return 0;
+        }
+        mex = max(v[i], mex);
+    }
+    cout << -1 << '\n';
+    return 0;
+}
