@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        cin >> n;
+        int ind = __lg(n) - 1;
+        ll val = 0;
+        int i = 0;
+        while (i <= ind)
+        {
+            val += (pow(2, i));
+            i++;
+        }
+        val++;
+        cout << (n ^ val) << " " << val << '\n';
+    }
+    return 0;
+}
