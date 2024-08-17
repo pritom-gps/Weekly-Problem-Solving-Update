@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        string a;
+        cin >> a;
+        int n = a.length();
+        bool isPresent = false;
+        int idx = 0;
+        for (int i = 0; i < n - 1; i++)
+        {
+            if (a[i + 1] != '0')
+            {
+                isPresent = true;
+                idx = i + 1;
+                break;
+            }
+        }
+        string b = a.substr(idx);
+        a.erase(a.begin() + idx, a.end());
+        if (isPresent)
+        {
+            int aLen = a.length();
+            int bLen = b.length();
+            if (bLen > aLen)
+                cout << a << " " << b << '\n';
+            else if (aLen == bLen)
+            {
+                int j = 0;
+                while (b[j] == a[j] && j < aLen)
+                    j++;
+                if (j == aLen)
+                    cout << -1 << '\n';
+                else
+                {
+                    if (b[j] > a[j])
+                        cout << a << " " << b << '\n';
+                    else
+                        cout << -1 << '\n';
+                }
+            }
+            else
+                cout << -1 << '\n';
+        }
+        else
+            cout << -1 << '\n';
+    }
+    return 0;
+}
