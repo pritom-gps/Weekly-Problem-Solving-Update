@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tst;
+    cin >> tst;
+    while (tst--)
+    {
+        int n;
+        cin >> n;
+        vector<int> v(n);
+        ll hand = 0;
+        bool flag = true;
+        for (int i = 0; i < n; i++)
+        {
+            cin >> v[i];
+            if (v[i] >= i)
+                hand += (v[i] - i);
+            else
+            {
+                hand -= (i - v[i]);
+                if (hand < 0)
+                    flag = false;
+            }
+        }
+        if (flag)
+            cout << "YES" << '\n';
+        else
+            cout << "NO" << '\n';
+    }
+    return 0;
+}
